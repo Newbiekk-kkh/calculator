@@ -9,8 +9,6 @@ public class Calculator {
         int result = 0;
         String repeat = "네";
 
-        //"더 계산하시겠습니까? (네 or 아니오)" 에서 네를 입력하면 처음으로 돌아와 다시 계산 수행
-
         while (Objects.equals(repeat, "네")) {
             // 첫번째 숫자 입력
             System.out.println("계산하고 싶은 첫번째 양의 정수를 입력해주세요.");
