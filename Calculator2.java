@@ -3,21 +3,39 @@ package calculator;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Calculaor2 {
+public class Calculator2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int result = 0;
         String repeat = "네";
 
         while (Objects.equals(repeat, "네")) {
-            System.out.println("계산하고 싶은 첫번째 양의 정수를 입력해주세요.");
-            int inputNumber1 = sc.nextInt();
-            sc.nextLine();
+            int inputNumber1;
+            while (true) {
+                System.out.println("계산하고 싶은 첫번째 양의 정수를 입력해주세요.");
+                if (sc.hasNextInt()) {
+                    inputNumber1 = sc.nextInt();
+                    sc.nextLine();
+                    break;
+                } else {
+                    System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+                    sc.next();
+                }
+            }
 
             // 두번째 숫자 입력
-            System.out.println("계산하고 싶은 두번째 양의 정수를 입력해주세요.");
-            int inputNumber2 = sc.nextInt();
-            sc.nextLine();
+            int inputNumber2;
+            while (true) {
+                System.out.println("계산하고 싶은 두번째 양의 정수를 입력해주세요.");
+                if (sc.hasNextInt()) {
+                    inputNumber2 = sc.nextInt();
+                    sc.nextLine();
+                    break;
+                } else {
+                    System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+                    sc.next();
+                }
+            }
 
             // 사칙연산 기호 입력
             System.out.println("계산하고 싶은 사칙연산 기호를 입력해주세요.");
@@ -73,3 +91,4 @@ public class Calculaor2 {
         System.out.println("계산기를 종료합니다.");
     }
 }
+
