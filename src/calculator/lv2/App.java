@@ -44,8 +44,9 @@ public class App {
             String operation = sc.nextLine();
 
             int result = Calculator.calculate(num1, num2, operation);
-            Calculator.results.add(result);
+            Calculator.resultData.add(result);
 
+            // while 문 반복 실행 및 종료를 위해 repeat 값 입력받기
             System.out.println("다시 계산하시겠습니까? '네' 또는 '아니오'를 입력해주세요.");
             repeat = sc.nextLine();
 
@@ -59,12 +60,48 @@ public class App {
                 }
             }
         }
+        // getter 메서드 사용
+        System.out.println("계산된 결과 값을 모두 보시겠습니까? '네' 또는 '아니오'를 입력해주세요.");
+        String selectGet = sc.nextLine();
+        if (selectGet.equals("네")) {
+            System.out.println(Calculator.getResultData());
+        }
+        // setter 메서드 사용
+        System.out.println("계산된 결과 값을 수정하시겠습니까? '네' 또는 '아니오'를 입력해주세요.");
+        String selectSet = sc.nextLine();
+        if (selectSet.equals("네")) {
+            System.out.println("구현중입니다.");
+        }
+        // 가장 첫번째로 저장된 데이터값을 삭제하는 removeResultData 메서드 사용
+        System.out.println("저장된 첫번째 데이터값을 삭제하시겠습니까? '네' 또는 '아니오'를 입력해주세요.");
+        String selectRemove = sc.nextLine();
+
+        while (true) {
+            if (selectSet.equals("아니오")) {
+                break;
+            } else if (selectSet.equals("네")) {
+                if (Calculator.resultData.isEmpty()) {
+                    System.out.println("삭제할 데이터가 존재하지 않습니다.");
+                    break;
+                } else {
+                    Calculator.removeResultData();
+                    System.out.println("데이터가 삭제되었습니다.");
+                    System.out.println("현재 결과 데이터: " + Calculator.getResultData());
+                    System.out.println("추가적으로 첫번째 데이터값을 삭제하시겠습니까?");
+                    selectRemove = sc.nextLine();
+                }
+            } else {
+                System.out.println("잘못된 입력입니다. '네' 또는 '아니오'를 입력해주세요.");
+                System.out.println("저장된 첫번째 데이터값을 삭제하시겠습니까? '네' 또는 '아니오'를 입력해주세요.");
+                selectRemove = sc.nextLine();
+            }
+        }
         System.out.println("계산기를 종료합니다.");
     }
 
 
-    public class Calculator {
-        private static Queue<Integer> results = new LinkedList<>();
+    public static class Calculator {
+        private static Queue<Integer> resultData = new LinkedList<>();
 
         public static int calculate(int num1, int num2, String operation) {
             int result = 0;
@@ -101,6 +138,17 @@ public class App {
             }
             return result;
         }
-    }
 
+        public static Queue<Integer> getResultData() {
+            return resultData;
+        }
+
+        public void setResultsData() {
+            this.resultData = resultData;
+        }
+
+        public static void removeResultData() {
+            resultData.remove();
+        }
+    }
 }
